@@ -1,0 +1,35 @@
+@model IEnumerable<PdfAnalysisApp.Models.PdfFile>
+
+<h2>Analyze PDFs</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>File</th>
+            <th>Status</th>
+            <th>Feedback</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pdf in Model)
+        {
+            <tr>
+                <td>@pdf.FileName</td>
+                <td>@pdf.Status</td>
+                <td>@pdf.Feedback</td>
+                <td>
+                    <form asp-action="Feedback" method="post">
+                        <input type="hidden" name="id" value="@pdf.Id" />
+                        <select name="status" class="form-control">
+                            <option value="Aprovado">Aprovar</option>
+                            <option value="Rejeitado">Rejeitar</option>
+                        </select>
+                        <input type="text" name="feedback" class="form-control" placeholder="Enviar feedback" />
+                        <button type="submit" class="btn btn-success">Enviar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,10 @@
+@model PdfAnalysisApp.Models.PdfFile
+
+<h2>Status de documento @Model.FileName</h2>
+
+<p>Status: @Model.Status</p>
+
+@if (!string.IsNullOrEmpty(Model.Feedback))
+{
+    <p>Feedback: @Model.Feedback</p>
+}

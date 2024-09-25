@@ -1,0 +1,32 @@
+@model PdfAnalysisApp.Models.Request
+
+<h2>Status da Solicitação</h2>
+
+<p><strong>ID da Solicitação:</strong> @Model.Id</p>
+<p><strong>Nome:</strong> @Model.Name</p>
+<p><strong>Email:</strong> @Model.Email</p>
+<p><strong>Telefone:</strong> @Model.Phone</p>
+<p><strong>Status:</strong> @Model.Status</p>
+<p><strong>Data de Criação:</strong> @Model.CreatedAt</p>
+<p><strong>Data de Criação:</strong> @Model.CreatedAt.ToString("dd/MM/yyyy")</p>
+
+<h3>Documento Anexado</h3>
+<a href="/uploads/@Model.DocumentPath" target="_blank">Visualizar Documento</a>
+
+
+@if (Model.Status == "Aprovado")
+{
+    <p class="text-success">Parabéns! Sua solicitação foi aprovada.</p>
+}
+else if (Model.Status == "Rejeitado")
+{
+    <p class="text-danger">Desculpe, sua solicitação foi rejeitada.</p>
+}
+else
+{
+    <p>Sua solicitação está em análise. Por favor, aguarde.</p>
+}
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+</div>
